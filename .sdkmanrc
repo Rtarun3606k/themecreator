@@ -1,0 +1,4 @@
+# Enable auto-env through the sdkman_auto_env config
+# Add key=value pairs of SDKs to use below
+# Enable auto-env through 'sdk config set sdkman_auto_env true'
+java=17.0.10-tem

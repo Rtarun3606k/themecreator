@@ -7,13 +7,15 @@ import {
   ActivityIndicator,
   View,
   Alert,
+  Image,
+  StyleSheet,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import { SafeAreaView } from "react-native-safe-area-context";
-import PaletteCard from "../../componenets/Colors"; // Heads-up: Make sure this file is named correctly!
 import useImageColors from "../../hooks/useImageColors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import PaletteList from "../../componenets/PalletList";
 
 export default function ImagePickerExample() {
   const [imageUrl, setImageUrl] = useState(null);
@@ -86,9 +88,25 @@ export default function ImagePickerExample() {
 
           {/* --- CODE REFINEMENT --- */}
           {/* Grouped the card and button in a single conditional block */}
+
           {colors && !loading && (
             <>
-              <PaletteCard ref={CardRef} colors={colors} imageUrl={imageUrl} />
+              <View className="w-full items-center  p-5 bg-white rounded-2xl shadow-md dark:bg-gray-900">
+                <PaletteList
+                  ref={CardRef}
+                  colors={colors}
+                  imageUrl={imageUrl}
+                />
+                <View className="w-full h-64 rounded-lg mt-8 overflow-hidden shadow-md">
+                  {/* 3. The Image component is now styled with absolute positioning */}
+                  <Image
+                    source={{ uri: imageUrl }}
+                    // Use StyleSheet.absoluteFillObject to make the image fill the container
+                    style={StyleSheet.absoluteFillObject}
+                    resizeMode="cover"
+                  />
+                </View>
+              </View>
               <TouchableOpacity
                 className="items-center py-4 bg-green-500 rounded-lg w-full mt-5 flex-row justify-center gap-4"
                 onPress={handleExport}

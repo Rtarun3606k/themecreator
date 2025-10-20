@@ -47,11 +47,30 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="camera"
+        options={{
+          title: "Camera",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="camera" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="home"
         options={{
           title: "Photos",
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="photo" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Camera"
+        options={{
+          href: null,
+          title: "Camera",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="camera" color={color} />
           ),
         }}
       />

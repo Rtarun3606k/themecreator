@@ -16,6 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as MediaLibrary from "expo-media-library";
 import PaletteCard from "../../componenets/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import CSS from "../../componenets/CSS";
 
 const Index = () => {
   // State for the input field
@@ -131,6 +132,8 @@ const Index = () => {
                 Export as Image
               </Text>
             </TouchableOpacity>
+
+            <CSS colors={colors} />
           </>
         )}
         {/* {colors && !loading && <PaletteCard colors={colors} imageUrl={text} />} */}

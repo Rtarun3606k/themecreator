@@ -1,4 +1,3 @@
-// Your main screen file (e.g., app/(tabs)/photos.js)
 import { useRef, useState } from "react";
 import {
   TouchableOpacity,
@@ -16,6 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import useImageColors from "../../hooks/useImageColors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import PaletteList from "../../componenets/PalletList";
+import CSS from "../../componenets/CSS";
 
 export default function ImagePickerExample() {
   const [imageUrl, setImageUrl] = useState(null);
@@ -121,6 +121,9 @@ export default function ImagePickerExample() {
                   Export as Image
                 </Text>
               </TouchableOpacity>
+              <View className="w-full h-auto">
+                <CSS colors={colors} />
+              </View>
             </>
           )}
           {/* --- END REFINEMENT --- */}

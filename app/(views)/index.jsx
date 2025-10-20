@@ -69,7 +69,7 @@ const Index = () => {
       contentContainerStyle={{
         flexGrow: 1,
         paddingHorizontal: 20, // Keep side padding
-        paddingTop: 0, // Keep top padding
+        paddingTop: 20, // Keep top padding
         paddingBottom: 150,
       }}
       // --- END OF UPDATE ---

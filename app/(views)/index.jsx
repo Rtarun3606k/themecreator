@@ -63,82 +63,79 @@ const Index = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100 dark:bg-black">
-      <ScrollView
-        // --- UPDATE THIS PART ---
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: 20, // Keep side padding
-          paddingTop: 20, // Keep top padding
-          paddingBottom: 150,
-        }}
-        // --- END OF UPDATE ---
-        keyboardShouldPersistTaps="handled"
-      >
-        {/* --- Input Card --- */}
-        <View className="w-full p-5 mb-5 bg-white rounded-2xl shadow-md dark:bg-gray-900">
-          <Text className="text-lg font-semibold text-gray-800 mb-2 dark:text-gray-200">
-            Image URL
+    // <SafeAreaView >
+    <ScrollView
+      // --- UPDATE THIS PART ---
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingHorizontal: 20, // Keep side padding
+        paddingTop: 0, // Keep top padding
+        paddingBottom: 150,
+      }}
+      // --- END OF UPDATE ---
+      keyboardShouldPersistTaps="handled"
+      className="flex-1 bg-gray-100 dark:bg-black"
+    >
+      {/* --- Input Card --- */}
+      <View className="w-full p-5 mb-5 bg-white rounded-2xl shadow-md dark:bg-gray-900">
+        <Text className="text-lg font-semibold text-gray-800 mb-2 dark:text-gray-200">
+          Image URL
+        </Text>
+        <TextInput
+          className="h-12 px-4 mb-4 bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+          placeholder="Enter image URL here..."
+          value={text}
+          onChangeText={setText}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <TouchableOpacity
+          className="items-center py-4 bg-blue-500 rounded-lg"
+          onPress={handleGenerate}
+        >
+          <Text className="text-base font-bold text-white">
+            Generate Palette
           </Text>
-          <TextInput
-            className="h-12 px-4 mb-4 bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
-            placeholder="Enter image URL here..."
-            value={text}
-            onChangeText={setText}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+        </TouchableOpacity>
+      </View>
+
+      {/* --- Conditional Rendering Logic --- */}
+      {loading && (
+        <View className="items-center justify-center mt-10">
+          <ActivityIndicator size="large" color="#3b82f6" />
+        </View>
+      )}
+
+      {error && !loading && (
+        <View className="items-center justify-center mt-10">
+          <Text className="text-base text-red-500">{error}</Text>
+        </View>
+      )}
+
+      {colors && !loading && (
+        <>
+          <PaletteCard ref={viewShotRef} colors={colors} imageUrl={imageUrl} />
           <TouchableOpacity
-            className="items-center py-4 bg-blue-500 rounded-lg"
-            onPress={handleGenerate}
+            className="items-center py-4 bg-green-500 rounded-lg w-full mt-5 flex-row justify-center gap-4"
+            onPress={handleExport}
           >
+            <FontAwesome
+              name="download" // Use the icon name here
+              size={18}
+              color="white"
+              style={{ marginRight: 10 }} // Add some space between the icon and text
+            />
             <Text className="text-base font-bold text-white">
-              Generate Palette
+              Export as Image
             </Text>
           </TouchableOpacity>
-        </View>
 
-        {/* --- Conditional Rendering Logic --- */}
-        {loading && (
-          <View className="items-center justify-center mt-10">
-            <ActivityIndicator size="large" color="#3b82f6" />
-          </View>
-        )}
-
-        {error && !loading && (
-          <View className="items-center justify-center mt-10">
-            <Text className="text-base text-red-500">{error}</Text>
-          </View>
-        )}
-
-        {colors && !loading && (
-          <>
-            <PaletteCard
-              ref={viewShotRef}
-              colors={colors}
-              imageUrl={imageUrl}
-            />
-            <TouchableOpacity
-              className="items-center py-4 bg-green-500 rounded-lg w-full mt-5 flex-row justify-center gap-4"
-              onPress={handleExport}
-            >
-              <FontAwesome
-                name="download" // Use the icon name here
-                size={18}
-                color="white"
-                style={{ marginRight: 10 }} // Add some space between the icon and text
-              />
-              <Text className="text-base font-bold text-white">
-                Export as Image
-              </Text>
-            </TouchableOpacity>
-
-            <CSS colors={colors} />
-          </>
-        )}
-        {/* {colors && !loading && <PaletteCard colors={colors} imageUrl={text} />} */}
-      </ScrollView>
-    </SafeAreaView>
+          <CSS colors={colors} />
+        </>
+      )}
+      {/* {colors && !loading && <PaletteCard colors={colors} imageUrl={text} />} */}
+    </ScrollView>
+    // </SafeAreaView>
   );
 };
 

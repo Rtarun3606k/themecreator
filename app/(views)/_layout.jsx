@@ -3,6 +3,7 @@ import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColorScheme } from "nativewind"; // 1. Import the hook
+import AppBar from "../../componenets/Appbar";
 
 export default function TabLayout() {
   const { bottom } = useSafeAreaInsets();
@@ -11,12 +12,13 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        header: () => <AppBar />,
+
         tabBarActiveTintColor: "#3b82f6",
         tabBarInactiveTintColor: "#6b7280",
         tabBarStyle: {
           position: "absolute",
-          bottom: bottom + 10,
+          bottom: bottom > 0 ? bottom + 5 : 15,
           left: 20,
           right: 20,
           borderRadius: 20,
@@ -71,6 +73,16 @@ export default function TabLayout() {
           title: "Camera",
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="camera" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="coffee"
+        options={{
+          href: null,
+          title: "Coffee",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="coffee" color={color} />
           ),
         }}
       />

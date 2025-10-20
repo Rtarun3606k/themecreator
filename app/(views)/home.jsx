@@ -58,77 +58,74 @@ export default function ImagePickerExample() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100 dark:bg-black">
-      <ScrollView
-        // --- THIS IS THE KEY FIX ---
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: 20,
-          paddingTop: 20,
-          paddingBottom: 150, // Use paddingBottom, not marginBottom
-        }}
-        // --- END OF FIX ---
-        keyboardShouldPersistTaps="handled"
-      >
-        <View className="flex-1 items-center justify-center">
-          <TouchableOpacity
-            className="items-center py-4 bg-blue-500 rounded-lg w-full mb-5"
-            onPress={pickImage}
-          >
-            <Text className="text-base font-bold text-white">
-              Generate Palette From Gallery
-            </Text>
-          </TouchableOpacity>
+    // <SafeAreaView className="flex-1 bg-gray-100 dark:bg-black">
+    <ScrollView
+      // --- THIS IS THE KEY FIX ---
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingHorizontal: 20,
+        paddingTop: 20,
+        paddingBottom: 150, // Use paddingBottom, not marginBottom
+      }}
+      // --- END OF FIX ---
+      keyboardShouldPersistTaps="handled"
+      className="flex-1 bg-gray-100 dark:bg-black"
+    >
+      <View className="flex-1 items-center justify-center">
+        <TouchableOpacity
+          className="items-center py-4 bg-blue-500 rounded-lg w-full mb-5"
+          onPress={pickImage}
+        >
+          <Text className="text-base font-bold text-white">
+            Generate Palette From Gallery
+          </Text>
+        </TouchableOpacity>
 
-          {loading && (
-            <ActivityIndicator size="large" style={{ marginVertical: 20 }} />
-          )}
+        {loading && (
+          <ActivityIndicator size="large" style={{ marginVertical: 20 }} />
+        )}
 
-          {error && <Text className="text-red-500 mt-20">{error}</Text>}
+        {error && <Text className="text-red-500 mt-20">{error}</Text>}
 
-          {/* --- CODE REFINEMENT --- */}
-          {/* Grouped the card and button in a single conditional block */}
+        {/* --- CODE REFINEMENT --- */}
+        {/* Grouped the card and button in a single conditional block */}
 
-          {colors && !loading && (
-            <>
-              <View className="w-full items-center  p-5 bg-white rounded-2xl shadow-md dark:bg-gray-900">
-                <PaletteList
-                  ref={CardRef}
-                  colors={colors}
-                  imageUrl={imageUrl}
+        {colors && !loading && (
+          <>
+            <View className="w-full items-center  p-5 bg-white rounded-2xl shadow-md dark:bg-gray-900">
+              <PaletteList ref={CardRef} colors={colors} imageUrl={imageUrl} />
+              <View className="w-full h-64 rounded-lg mt-8 overflow-hidden shadow-md">
+                {/* 3. The Image component is now styled with absolute positioning */}
+                <Image
+                  source={{ uri: imageUrl }}
+                  // Use StyleSheet.absoluteFillObject to make the image fill the container
+                  style={StyleSheet.absoluteFillObject}
+                  resizeMode="cover"
                 />
-                <View className="w-full h-64 rounded-lg mt-8 overflow-hidden shadow-md">
-                  {/* 3. The Image component is now styled with absolute positioning */}
-                  <Image
-                    source={{ uri: imageUrl }}
-                    // Use StyleSheet.absoluteFillObject to make the image fill the container
-                    style={StyleSheet.absoluteFillObject}
-                    resizeMode="cover"
-                  />
-                </View>
               </View>
-              <TouchableOpacity
-                className="items-center py-4 bg-green-500 rounded-lg w-full mt-5 flex-row justify-center gap-4"
-                onPress={handleExport}
-              >
-                <FontAwesome
-                  name="download" // Use the icon name here
-                  size={18}
-                  color="white"
-                  style={{ marginRight: 10 }} // Add some space between the icon and text
-                />
-                <Text className="text-base font-bold text-white">
-                  Export as Image
-                </Text>
-              </TouchableOpacity>
-              <View className="w-full h-auto">
-                <CSS colors={colors} />
-              </View>
-            </>
-          )}
-          {/* --- END REFINEMENT --- */}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+            </View>
+            <TouchableOpacity
+              className="items-center py-4 bg-green-500 rounded-lg w-full mt-5 flex-row justify-center gap-4"
+              onPress={handleExport}
+            >
+              <FontAwesome
+                name="download" // Use the icon name here
+                size={18}
+                color="white"
+                style={{ marginRight: 10 }} // Add some space between the icon and text
+              />
+              <Text className="text-base font-bold text-white">
+                Export as Image
+              </Text>
+            </TouchableOpacity>
+            <View className="w-full h-auto">
+              <CSS colors={colors} />
+            </View>
+          </>
+        )}
+        {/* --- END REFINEMENT --- */}
+      </View>
+    </ScrollView>
+    // </SafeAreaView>
   );
 }

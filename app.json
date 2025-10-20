@@ -5,11 +5,11 @@
     "scheme": "themecreator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/LOGO.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/LOGO.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/LOGO.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -36,13 +36,28 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "ios": {
+            "backgroundColor": "#ffffff",
+            "image": "./assets/LOGO.png",
+            "resizeMode": "cover"
+          },
+          "android": {
+            "backgroundColor": "#0c7cff",
+            "image": "./assets/LOGO.png",
+            "imageWidth": 150
+          }
+        }
       ]
-    ],
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "16be0909-9037-4470-a753-14f0e2369063"
-      }
+    ]
+  },
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "16be0909-9037-4470-a753-14f0e2369063"
     }
   }
 }

@@ -1,14 +1,16 @@
 // componenets/AppBar.js
 import React from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useColorScheme } from "nativewind";
+import * as Haptics from "expo-haptics";
 
 const AppBar = () => {
   const { colorScheme } = useColorScheme();
   const handleCoffeePress = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push("/coffee");
   };
 
@@ -18,13 +20,20 @@ const AppBar = () => {
       <View className="flex-row items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
         {/* Left Side: TC Logo */}
         <View className="flex-row items-center gap-2">
-          <View className="w-8 h-8 items-center justify-center rounded-full bg-gray-800 dark:bg-gray-200">
-            <Text className="text-sm font-bold text-white dark:text-gray-800">
-              TC
-            </Text>
+          <View
+            className="w-8 h-8 items-center justify-center rounded-full bg-gray-800 dark:bg-gray-200"
+            onPress={() => {
+              router.push("/");
+            }}
+          >
+            <Image
+              source={require("../assets/splash-icon.png")}
+              className="w-8 h-8"
+              resizeMode="contain"
+            />
           </View>
           <Text className="text-lg font-bold text-gray-800 dark:text-white">
-            ThemeCreator
+            Theme Creator
           </Text>
         </View>
 

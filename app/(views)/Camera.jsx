@@ -10,6 +10,7 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
+import * as Haptics from "expo-haptics";
 import * as FileSystem from "expo-file-system/legacy";
 import * as MediaLibrary from "expo-media-library";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -68,9 +69,11 @@ export default function PhotoResultScreen() {
       }
       const uri = await cardRef.current.capture();
       await MediaLibrary.saveToLibraryAsync(uri);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert("Success!", "Palette saved to gallery.");
     } catch (e) {
       console.error(e);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       Alert.alert("Error", "Could not save image.");
     }
   };

@@ -4,6 +4,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColorScheme } from "nativewind"; // 1. Import the hook
 import AppBar from "../../componenets/Appbar";
+import * as Haptics from "expo-haptics";
 
 export default function TabLayout() {
   const { bottom } = useSafeAreaInsets();
@@ -36,6 +37,12 @@ export default function TabLayout() {
             colorScheme === "dark"
               ? "rgba(29, 29, 29, 0.8)" // Dark, translucent background
               : "rgba(255, 255, 255, 0.9)", // Light, translucent background
+        },
+      }}
+      screenListeners={{
+        tabPress: (e) => {
+          // Trigger light haptic feedback on tab press
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         },
       }}
     >

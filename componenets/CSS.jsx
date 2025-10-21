@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useColorScheme } from "nativewind";
+import * as Haptics from "expo-haptics";
 
 /**
  * Converts a JavaScript object into a string of CSS custom properties.
@@ -30,6 +31,7 @@ const CSS = ({ colors }) => {
 
   const copyToClipboard = async () => {
     await Clipboard.setStringAsync(cssString);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setCopied(true);
     // Reset the "Copied!" state after 2 seconds
     setTimeout(() => setCopied(false), 2000);

@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import React, { useState, useRef } from "react";
 import useImageColors from "../../hooks/useImageColors"; // Your hook should also return loading and error states
-import { SafeAreaView } from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 import * as MediaLibrary from "expo-media-library";
 import PaletteCard from "../../componenets/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -54,10 +54,12 @@ const Index = () => {
 
       // Save the image to the media library
       await MediaLibrary.saveToLibraryAsync(uri);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
       Alert.alert("Success!", "Color palette saved to your photo gallery.");
     } catch (e) {
       console.error(e);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       Alert.alert("Error", "Could not save the image.");
     }
   };

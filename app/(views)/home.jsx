@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
-import { SafeAreaView } from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 import useImageColors from "../../hooks/useImageColors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import PaletteList from "../../componenets/PalletList";
@@ -50,9 +50,11 @@ export default function ImagePickerExample() {
       }
       const uri = await CardRef.current.capture();
       await MediaLibrary.saveToLibraryAsync(uri);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert("Success!", "Color palette saved to your photo gallery.");
     } catch (e) {
       console.error(e);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       Alert.alert("Error", "Could not save the image.");
     }
   };

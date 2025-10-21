@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useColorScheme } from "nativewind";
 
 /**
  * Converts a JavaScript object into a string of CSS custom properties.
@@ -21,6 +22,7 @@ function convertToCssVariables(colorObject) {
 const CSS = ({ colors }) => {
   const [cssString, setCssString] = useState("");
   const [copied, setCopied] = useState(false); // State for copy feedback
+  const { colorScheme } = useColorScheme();
 
   useEffect(() => {
     setCssString(convertToCssVariables(colors));
@@ -42,6 +44,7 @@ const CSS = ({ colors }) => {
             name="css3"
             size={14}
             className=" text-black  dark:text-white"
+            color={colorScheme === "dark" ? "white" : "black"}
           />
           <Text className="text-sm font-semibold text-gray-600 dark:text-gray-400">
             CSS Variables
@@ -67,6 +70,7 @@ const CSS = ({ colors }) => {
                 name="clipboard"
                 size={14}
                 className="text-gray-600 dark:text-gray-300"
+                color={colorScheme === "dark" ? "white" : "black"}
               />
               <Text className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Copy

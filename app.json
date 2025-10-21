@@ -5,13 +5,13 @@
     "scheme": "themecreator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LOGO.png",
+    "icon": "./assets/TC.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/LOGO.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
@@ -19,8 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LOGO.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/splash-icon.png",
+        "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.rtarun3606k.themecreator"
@@ -41,13 +41,13 @@
         "expo-splash-screen",
         {
           "ios": {
-            "backgroundColor": "#ffffff",
-            "image": "./assets/LOGO.png",
+            "backgroundColor": "#000000",
+            "image": "./assets/splash-icon.png",
             "resizeMode": "cover"
           },
           "android": {
-            "backgroundColor": "#0c7cff",
-            "image": "./assets/LOGO.png",
+            "backgroundColor": "#000000",
+            "image": "./assets/splash-icon.png",
             "imageWidth": 150
           }
         }

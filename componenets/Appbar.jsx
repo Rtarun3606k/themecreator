@@ -28,7 +28,7 @@ const AppBar = () => {
           >
             <Image
               source={require("../assets/splash-icon.png")}
-              className="w-8 h-8"
+              className="w-8 h-8 bg-black"
               resizeMode="contain"
             />
           </View>

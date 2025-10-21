@@ -107,6 +107,7 @@ export default function PhotoResultScreen() {
           paddingBottom: 150,
         }}
         keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
       >
         <View className="flex-1 items-center justify-center">
           {loading && (

@@ -42,7 +42,7 @@ export default function TabLayout() {
       screenListeners={{
         tabPress: (e) => {
           // Trigger light haptic feedback on tab press
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
         },
       }}
     >

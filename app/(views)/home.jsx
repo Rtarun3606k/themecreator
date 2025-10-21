@@ -72,6 +72,7 @@ export default function ImagePickerExample() {
       // --- END OF FIX ---
       keyboardShouldPersistTaps="handled"
       className="flex-1 bg-gray-100 dark:bg-black"
+      showsVerticalScrollIndicator={false}
     >
       <View className="flex-1 items-center justify-center">
         <TouchableOpacity

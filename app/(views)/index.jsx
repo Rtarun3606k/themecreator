@@ -74,7 +74,7 @@ const Index = () => {
         paddingTop: 20, // Keep top padding
         paddingBottom: 150,
       }}
-      // --- END OF UPDATE ---
+      showsVerticalScrollIndicator={false} // --- END OF UPDATE ---
       keyboardShouldPersistTaps="handled"
       className="flex-1 bg-gray-100 dark:bg-black"
     >
